@@ -272,18 +272,25 @@ body{margin:0;background:#170D0B}
 /* Header menu */
 .anchor{scroll-margin-top:96px}
 .btn.burger{width:44px;padding:0}
-.burger path{transition:transform .2s ease,opacity .2s ease;transform-origin:12px 12px}
-.burger[aria-expanded="true"] .bar-top{transform:translateY(5px) rotate(45deg)}
-.burger[aria-expanded="true"] .bar-mid{opacity:0}
-.burger[aria-expanded="true"] .bar-bot{transform:translateY(-5px) rotate(-45deg)}
+.btn.burger:hover svg{transform:none}
+/* Bars meet in the middle, then turn into an X; closing plays it backwards. */
+.burger path{transform-box:fill-box;transform-origin:center;
+  transition:translate .16s ease .14s,rotate .16s ease,opacity .1s ease .14s,scale .16s ease .14s}
+.burger[aria-expanded="true"] path{transition:translate .16s ease,rotate .2s cubic-bezier(.2,.8,.2,1) .14s,opacity .1s ease,scale .16s ease}
+.burger[aria-expanded="true"] .bar-top{translate:0 5px;rotate:45deg}
+.burger[aria-expanded="true"] .bar-mid{opacity:0;scale:.2 1}
+.burger[aria-expanded="true"] .bar-bot{translate:0 -5px;rotate:-45deg}
 .menu{position:absolute;top:calc(100% + 8px);right:clamp(16px,4vw,40px);min-width:min(280px,calc(100vw - 32px));
   background:var(--glass-strong);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
   border:1px solid var(--glass-edge);border-radius:12px;padding:8px;
   box-shadow:inset 0 1px 0 var(--glass-hi),0 22px 48px -24px var(--glass-shadow)}
 .menu[hidden]{display:none}
+.menu:not([hidden]){animation:menu-in .18s cubic-bezier(.2,.7,.2,1)}
+@keyframes menu-in{from{opacity:0;transform:translateY(-6px) scale(.98)}}
+.menu{transform-origin:top right}
 .menu ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
 .ism .menu a{display:flex;align-items:center;min-height:48px;padding:0 14px;border-radius:8px;color:var(--ink);text-decoration:none;font-weight:500}
 .ism .menu a:hover{background:var(--accent-soft);color:var(--ink)}
 .ism .menu li:last-child a{color:var(--accent-text);font-weight:600}
-@media (prefers-reduced-motion: reduce){.burger path{transition:none}}
+@media (prefers-reduced-motion: reduce){.burger path,.burger[aria-expanded="true"] path{transition:none}.menu:not([hidden]){animation:none}}
 @media (prefers-reduced-transparency: reduce){.menu{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}

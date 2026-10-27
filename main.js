@@ -17,7 +17,7 @@
     timer = setTimeout(function () {
       show((i + 1) % phrases.length);
       queue();
-    }, i === phrases.length - 1 ? 4200 : 2500);
+    }, 1500);
   }
   function pause() { clearTimeout(timer); paused = true; }
   function resume() { if (reduced) return; paused = false; queue(); }

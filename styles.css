@@ -248,6 +248,7 @@ body{margin:0;background:#170D0B}
   border:1px solid var(--glass-edge);
   box-shadow:inset 0 1px 0 var(--glass-hi),0 14px 28px -14px var(--glass-shadow)}
 .door-icon svg{transform:translate(5px,4px)}
+@media (max-width: 599px){.door-icon{display:none}.br-wide{display:none}.wide-only{display:none}}
 .ic-line{fill:none;stroke:var(--brand);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .ic-fill{fill:var(--accent);fill-opacity:.42}
 .ic-paper{fill:var(--surface);fill-opacity:.85}

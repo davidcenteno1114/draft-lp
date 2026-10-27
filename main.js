@@ -44,6 +44,17 @@
     });
   });
 
+  // Booking links: bring the form itself into view and put the cursor in Name.
+  if (form) {
+    document.querySelectorAll('a[href="#book"]').forEach(function (a) {
+      a.addEventListener('click', function (e) {
+        e.preventDefault();
+        form.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
+        form.elements.name.focus({ preventScroll: true });
+      });
+    });
+  }
+
   // Booking: hand the form off to Calendly with the answers prefilled.
   if (form) {
     form.addEventListener('submit', function (e) {

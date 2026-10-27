@@ -17,9 +17,17 @@
 <div class="topo" aria-hidden="true"><div class="topo-land"></div><div class="topo-lines"></div></div>
 
 <header class="hdr">
-<div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px">
+<div class="wrap" style="position: relative; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 68px">
 <a href="#top" class="wordmark"><img src="assets/ismoo-logo.svg" alt="Ismoo" width="160" height="30" style="display: block; height: 30px; width: auto"></a>
-<a href="#book" class="btn btn-sm">Book Discovery Call</a>
+<button type="button" class="btn btn-sm burger" aria-label="Menu" aria-expanded="false" aria-controls="site-menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path class="bar-top" d="M4 7h16"></path><path class="bar-mid" d="M4 12h16"></path><path class="bar-bot" d="M4 17h16"></path></svg></button>
+<nav class="menu" id="site-menu" aria-label="Page sections" hidden>
+<ul>
+<li><a href="#doors-title">The Problem</a></li>
+<li><a href="#what-card">Our Approach</a></li>
+<li><a href="#how-title">The Risk-Free Step</a></li>
+<li><a href="#book">Book a Discovery Call</a></li>
+</ul>
+</nav>
 </div>
 </header>
 
@@ -58,7 +66,7 @@
 <div style="max-width: 48rem; display: flex; flex-direction: column; gap: 20px">
 <p class="mono" style="color: var(--ink-2)">The problem with most pre-built software</p>
 <h2 class="h2">Built for everyone. Fitted to no one.</h2>
-<p style="font-size: clamp(18px, 1.7vw, 21px); line-height: 1.55; color: var(--ink-2)">Packaged systems are good at three things: they standardize, they control and they record. For the standard parts of your business, that's exactly what you need. But the parts that make you money aren't standard: the way you price a regular customer, the way a rush order jumps the queue. Generic systems can't hold those, so your team carries them by hand. We build your software, your systems, around the way you win, not the way off-the-shelf tools expect.</p>
+<p style="font-size: clamp(18px, 1.7vw, 21px); line-height: 1.55; color: var(--ink-2)">Off-the-shelf software handles your routine work well: it standardizes, controls and records. For the standard parts of your business, that's exactly what you need. But it can't handle the unique ways your team actually works.</p>
 <a href="#doors" class="problem-next">So where does your team feel it most?<svg class="drop" width="24" height="72" viewBox="0 0 24 72" aria-hidden="true"><path d="M12 2v62"></path><path d="M5 57l7 8 7-8"></path></svg></a>
 </div>
 </div>
@@ -66,7 +74,7 @@
 
 <section id="doors" style="padding: clamp(88px, 11vw, 152px) 0 clamp(72px, 9vw, 120px)">
 <div class="wrap" style="display: flex; flex-direction: column; gap: clamp(32px, 4vw, 52px)">
-<h2 class="h2">Which one sounds like you?</h2>
+<h2 class="h2 anchor" id="doors-title">Which one sounds like you?</h2>
 <div class="doors">
 
 <article class="door">
@@ -135,7 +143,7 @@
 
 <section id="what" style="padding: clamp(24px, 4vw, 56px) 0">
 <div class="wrap">
-<div class="split glass" style="border-radius: 16px; padding: clamp(28px, 5.5vw, 80px)">
+<div class="split glass anchor" id="what-card" style="border-radius: 16px; padding: clamp(28px, 5.5vw, 80px)">
 <h2 class="h2">Whatever brought you here, you end up with systems that work your way.</h2>
 <div style="display: flex; flex-direction: column; gap: 28px">
 <p style="font-size: clamp(18px, 1.7vw, 21px); line-height: 1.55; color: var(--ink-2)">You get software built around how your business really runs. Sometimes it's the tool your team was missing, sometimes it's automation that ends the copy-paste, and sometimes it's the system you already own, finally doing its job. Whatever it is, it fits, because your team helped shape it.</p>
@@ -148,7 +156,7 @@
 <section id="how" style="padding: clamp(88px, 11vw, 152px) 0">
 <div class="wrap" style="display: flex; flex-direction: column; gap: clamp(36px, 5vw, 64px)">
 <div style="display: flex; flex-direction: column; gap: 18px; max-width: 46rem">
-<h2 class="h2">Start free. Every step after is small.</h2>
+<h2 class="h2 anchor" id="how-title">Start free. Every step after is small.</h2>
 <p style="font-size: clamp(18px, 1.7vw, 21px); color: var(--ink-2)">You decide at every step whether to go on. Each step takes a specific risk out of the next one.</p>
 </div>
 
@@ -209,7 +217,7 @@
 
 <section id="book" class="band" style="padding: clamp(88px, 11vw, 144px) 0; scroll-margin-top: 68px">
 <div class="wrap split">
-<div class="lead" style="display: flex; flex-direction: column; gap: 22px">
+<div class="lead anchor" style="display: flex; flex-direction: column; gap: 22px">
 <div class="bridge" aria-hidden="true" style="width: 220px; margin-bottom: 12px">
 <div class="ledge" style="height: 5px"></div>
 <svg width="120" height="40" viewBox="0 0 120 40">
@@ -221,10 +229,7 @@
 <div class="ledge" style="height: 5px"></div>
 </div>
 <h2 class="h2" style="color: var(--on-band)">Let's Build Together</h2>
-<p style="font-size: 22px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em">45 minutes. Free. With the team that will actually build for you.</p>
-<p><strong>You talk, we listen.</strong> Where you're headed, and what keeps getting in the way.</p>
-<p><strong>We ask how the work really gets done,</strong> not how the system says it should.</p>
-<p><strong>You leave with our honest read:</strong> what we'd fix first, roughly what it costs, and whether discovery is even worth it. Whether or not we work together.</p>
+<p style="font-size: 18px; font-weight: 600; color: var(--accent); letter-spacing: -0.01em">45 minutes. Free. With the team that will actually build for you.</p>
 </div>
 
 <form class="form-card" id="book-form">

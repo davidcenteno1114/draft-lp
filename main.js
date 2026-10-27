@@ -36,6 +36,26 @@
     }
   }
 
+  // Header menu: burger toggles it; a link, Escape or a click outside closes it.
+  var burger = document.querySelector('.burger');
+  var menu = document.getElementById('site-menu');
+  function setMenu(open) {
+    menu.hidden = !open;
+    burger.setAttribute('aria-expanded', String(open));
+  }
+  if (burger && menu) {
+    burger.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('click', function (e) {
+      if (!menu.hidden && !menu.contains(e.target) && !burger.contains(e.target)) setMenu(false);
+    });
+    [burger, menu].forEach(function (el) {
+      el.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !menu.hidden) { setMenu(false); burger.focus(); }
+      });
+    });
+  }
+
   // Doors: remember which one was picked so the booking form can pass it on.
   var form = document.getElementById('book-form');
   document.querySelectorAll('[data-door]').forEach(function (a) {
@@ -44,13 +64,13 @@
     });
   });
 
-  // Booking links: bring the form itself into view and put the cursor in Name.
-  if (form) {
+  // Booking links: land on "Let's Build Together", just under the header.
+  var lead = document.querySelector('#book .lead');
+  if (lead) {
     document.querySelectorAll('a[href="#book"]').forEach(function (a) {
       a.addEventListener('click', function (e) {
         e.preventDefault();
-        form.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
-        form.elements.name.focus({ preventScroll: true });
+        lead.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'start' });
       });
     });
   }

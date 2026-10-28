@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="160" height="160" fill="none" stroke="url(#ismoo-grad-custom-software)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Custom software"><title>Custom software</title>
+  <defs><linearGradient id="ismoo-grad-custom-software" x1="2" y1="0" x2="38" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#46C3CC"/><stop offset="0.45" stop-color="#2E9CC8"/><stop offset="1" stop-color="#1F64AE"/></linearGradient></defs>
+  <rect x="4" y="7" width="32" height="26" rx="3"/>
+  <path d="M4 12.5h32M7.8 9.8h.01M10.8 9.8h.01"/>
+  <path d="M15 19l-4 4 4 4M25 19l4 4-4 4M22 18l-4 10"/>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="160" height="160" fill="none" stroke="url(#ismoo-grad-ai-integration)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="AI integration"><title>AI integration</title>
+  <defs><linearGradient id="ismoo-grad-ai-integration" x1="2" y1="0" x2="38" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#46C3CC"/><stop offset="0.45" stop-color="#2E9CC8"/><stop offset="1" stop-color="#1F64AE"/></linearGradient></defs>
+  <rect x="3.5" y="12" width="15" height="16" rx="2.5"/>
+  <path d="M7.5 17.5h7M7.5 22.5h4.5"/>
+  <path d="M18.5 20h3.5"/>
+  <circle cx="29" cy="20" r="7.5"/>
+  <path d="M29 15q0 5 5 5q-5 0-5 5q0-5-5-5q5 0 5-5Z"/>
+</svg>

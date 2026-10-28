@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="160" height="160" fill="none" stroke="url(#ismoo-grad-legacy-migration)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Legacy system migration"><title>Legacy system migration</title>
+  <defs><linearGradient id="ismoo-grad-legacy-migration" x1="2" y1="0" x2="38" y2="0" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#46C3CC"/><stop offset="0.45" stop-color="#2E9CC8"/><stop offset="1" stop-color="#1F64AE"/></linearGradient></defs>
+  <g stroke-dasharray="2.4 2.8"><ellipse cx="10" cy="23" rx="6.5" ry="2.3"/><path d="M3.5 23V34 a6.5 2.3 0 0 0 13 0V23 M3.5 28.5 a6.5 2.3 0 0 0 13 0"/></g>
+  <g ><ellipse cx="29.5" cy="7" rx="6.5" ry="2.3"/><path d="M23.0 7V18 a6.5 2.3 0 0 0 13 0V7 M23.0 12.5 a6.5 2.3 0 0 0 13 0"/></g>
+  <path d="M10 18.5C10 12 13.5 10 20 10M17.6 7.6L20 10l-2.4 2.4"/>
+</svg>

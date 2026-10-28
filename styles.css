@@ -356,3 +356,24 @@ body{margin:0;background:#170D0B}
   .ism .door-select:focus-visible{outline-offset:-3px;border-radius:16px}
   .door.is-selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 28px -6px color-mix(in oklab,var(--accent) 55%,transparent),0 28px 56px -28px var(--glass-shadow)}
 }
+/* Footer: brand + description + CTA, two link columns, then the legal row. */
+.ftr{position:relative;z-index:1;border-top:1px solid var(--line);padding:clamp(48px,6vw,72px) 0 32px}
+.ftr-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:40px clamp(32px,5vw,72px);align-items:start}
+.ftr-brand{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.ftr-brand p{color:var(--ink-2);font-size:15px;line-height:1.55;max-width:30rem}
+.ftr-h{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);margin:0 0 14px;font-weight:500}
+.ftr ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--ink-2)}
+.ism .ftr ul a{color:var(--ink);text-decoration:none}
+.ism .ftr ul a:hover{color:var(--accent-text)}
+.ftr-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;margin-top:clamp(40px,5vw,56px);padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--ink-2)}
+.ism .ftr-bottom a{color:var(--ink-2)}
+.ism .ftr-bottom a:hover{color:var(--ink)}
+@media (max-width: 760px){.ftr-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.ftr-brand{grid-column:1 / -1}}
+/* Legal pages (privacy policy): readable single column. */
+.legal{max-width:46rem;display:flex;flex-direction:column;gap:16px}
+.legal h1{margin-bottom:8px}
+.legal h2{font-size:clamp(20px,2vw,24px);letter-spacing:-.015em;font-weight:600;margin:24px 0 0}
+.legal p,.legal li{color:var(--ink-2)}
+.legal ul{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
+.legal strong{color:var(--ink);font-weight:600}
+.draft-note{border:1px dashed var(--brand);border-radius:10px;padding:14px 18px;font-size:15px}

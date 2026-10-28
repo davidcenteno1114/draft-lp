@@ -1,6 +1,9 @@
 (function () {
   var root = document.querySelector('.ism');
 
+  // Footer copyright year stays current.
+  document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
   // Hero: rotate the "not to ..." phrases; hover (or tap on touch) pauses.
   var h1 = document.querySelector('.hero .h1');
   var phrases = h1 ? h1.querySelectorAll('.rot .ph') : [];

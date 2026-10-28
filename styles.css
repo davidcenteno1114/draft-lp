@@ -9,6 +9,7 @@ body{margin:0;background:#170D0B}
   --accent-soft:color-mix(in oklab,var(--accent) 24%,var(--bg));
   --band:#16150F;--on-band:#F5F2EA;--on-band-2:#BDB6A6;--band-line:#3A372F;
   --focus:#1F5FD1;
+  --ember:#C23A26;
   background:var(--bg);color:var(--ink);
   font-family:'Geist',ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
   font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;
@@ -20,6 +21,7 @@ body{margin:0;background:#170D0B}
   --accent-soft:color-mix(in oklab,var(--accent) 30%,var(--bg));
   --band:#1E1C18;--on-band:#F2EEE4;--on-band-2:#B5AFA2;--band-line:#36332D;
   --focus:#8AB4FF;
+  --ember:#EF5D4A;
 }
 @media (prefers-color-scheme: dark){
   .ism.t-auto{
@@ -29,6 +31,7 @@ body{margin:0;background:#170D0B}
     --accent-soft:color-mix(in oklab,var(--accent) 30%,var(--bg));
     --band:#1E1C18;--on-band:#F2EEE4;--on-band-2:#B5AFA2;--band-line:#36332D;
     --focus:#8AB4FF;
+    --ember:#EF5D4A;
   }
 }
 .ism *,.ism *::before,.ism *::after{box-sizing:border-box}
@@ -54,7 +57,11 @@ body{margin:0;background:#170D0B}
 .ism a.btn-ghost:hover{background:var(--ink);color:var(--bg)}
 
 .h1{font-size:clamp(36px,6.3vw,88px);line-height:1.02;letter-spacing:-.038em;font-weight:600;max-width:15.5ch}
-.rot{display:grid;color:var(--accent-text);cursor:default}
+.rot{display:grid;color:var(--ember);cursor:default}
+.ember{color:var(--ember)}
+/* Hero sits on a solid black band. */
+.hero{background:#000}
+.hero .b-joint{fill:#000}
 .ph{grid-area:1/1;opacity:0;transform:translateY(.22em);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
 .ph.on{opacity:1;transform:none}
 .h2{font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-.032em;font-weight:600}
@@ -195,10 +202,12 @@ body{margin:0;background:#170D0B}
 .band{
   background-color:var(--band);
   background-image:
-    radial-gradient(40rem 30rem at 84% 46%,color-mix(in oklab,var(--accent) 26%,transparent),transparent 70%),
+    radial-gradient(34rem 24rem at 22% 40%,color-mix(in oklab,var(--accent) 30%,transparent),transparent 70%),
+    radial-gradient(30rem 22rem at 80% 66%,color-mix(in oklab,var(--brand) 22%,transparent),transparent 70%),
+    radial-gradient(60rem 30rem at 50% 50%,color-mix(in oklab,var(--accent) 10%,transparent),transparent 75%),
     linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
-  background-size:auto,56px 56px,56px 56px;
+  background-size:auto,auto,auto,56px 56px,56px 56px;
 }
 .faq-panel{padding:4px clamp(20px,3vw,32px)}
 .faq-panel details:first-child{border-top:0}
@@ -213,6 +222,13 @@ body{margin:0;background:#170D0B}
   background-image:
     radial-gradient(38rem 26rem at 10% 34%,var(--glow),transparent 70%),
     radial-gradient(40rem 28rem at 92% 74%,var(--glow),transparent 70%);
+}
+/* Our Approach and the steps: cyan and orange glow pooled behind the glass. */
+.glow-section{
+  background-image:
+    radial-gradient(34rem 24rem at 22% 40%,color-mix(in oklab,var(--accent) 30%,transparent),transparent 70%),
+    radial-gradient(30rem 22rem at 80% 66%,color-mix(in oklab,var(--brand) 22%,transparent),transparent 70%),
+    radial-gradient(60rem 30rem at 50% 50%,color-mix(in oklab,var(--accent) 10%,transparent),transparent 75%);
 }
 .door{
   background:linear-gradient(140deg,var(--sheen) 0%,transparent 42%),var(--glass-door);

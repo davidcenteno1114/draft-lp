@@ -75,13 +75,21 @@
     });
   }
 
-  // Mobile booking bar: step aside while the booking section is on screen.
+  // Mobile booking bar: step aside while the hero (which has its own button)
+  // or the booking section is on screen.
   var bar = document.querySelector('.mobile-cta');
-  var bookSection = document.getElementById('book');
-  if (bar && bookSection && 'IntersectionObserver' in window) {
-    new IntersectionObserver(function (entries) {
-      bar.classList.toggle('is-hidden', entries[0].isIntersecting);
-    }).observe(bookSection);
+  var covered = [document.querySelector('.hero'), document.getElementById('book')].filter(Boolean);
+  if (bar && covered.length && 'IntersectionObserver' in window) {
+    var showing = [];
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        var i = showing.indexOf(en.target);
+        if (en.isIntersecting && i < 0) showing.push(en.target);
+        if (!en.isIntersecting && i > -1) showing.splice(i, 1);
+      });
+      bar.classList.toggle('is-hidden', showing.length > 0);
+    });
+    covered.forEach(function (el) { io.observe(el); });
   }
 
   // Booking form: friendlier messages than the browser's "Please fill out this field."

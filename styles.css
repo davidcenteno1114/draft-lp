@@ -357,7 +357,10 @@ body{margin:0;background:#170D0B}
   .door.is-selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 28px -6px color-mix(in oklab,var(--accent) 55%,transparent),0 28px 56px -28px var(--glass-shadow)}
 }
 /* Footer: brand + description + CTA, two link columns, then the legal row. */
-.ftr{position:relative;z-index:1;border-top:1px solid var(--line);padding:clamp(48px,6vw,72px) 0 32px}
+.ftr{position:relative;z-index:1;padding:clamp(48px,6vw,72px) 0 32px;
+  /* Same frosted glass as the header. */
+  background:color-mix(in oklab,var(--bg) 58%,transparent);-webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);border-top:1px solid var(--glass-edge)}
+@media (prefers-reduced-transparency: reduce){.ftr{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}
 .ftr-grid{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) minmax(0,1fr);gap:40px clamp(32px,5vw,72px);align-items:start}
 .ftr-brand{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
 .ftr-brand p{color:var(--ink-2);font-size:15px;line-height:1.55;max-width:30rem}

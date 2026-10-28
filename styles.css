@@ -63,21 +63,10 @@ body{margin:0;background:#170D0B}
 /* Hero sits on a solid black band. */
 /* Fades into the page instead of ending on a hard edge (no "false bottom"). */
 .hero{background:linear-gradient(to bottom,#000 calc(100% - 160px),transparent)}
-.hero .b-joint{fill:#000}
 .ph{grid-area:1/1;opacity:0;transform:translateY(.22em);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
 .ph.on{opacity:1;transform:none}
 .h2{font-family:'Poppins',ui-sans-serif,system-ui,sans-serif;font-size:clamp(30px,4.1vw,52px);line-height:1.12;letter-spacing:-.022em;font-weight:600}
 
-.bridge{display:flex;align-items:flex-end}
-.ledge{height:6px;background:var(--brand);flex:1 1 0}
-.ledge.l{flex-grow:5}
-.ledge.r{flex-grow:3}
-.bridge svg{flex:none;display:block}
-.b-arc{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round}
-.b-gap{stroke:var(--ink-2);stroke-width:1.5;stroke-dasharray:2 6;stroke-linecap:round}
-.b-joint{fill:var(--bg);stroke:var(--accent);stroke-width:2}
-.hero .b-arc{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.8s .5s cubic-bezier(.6,0,.2,1) forwards}
-@keyframes draw{to{stroke-dashoffset:0}}
 
 .doors{display:flex;flex-direction:column;gap:20px}
 .door{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:clamp(24px,3.4vw,44px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px clamp(32px,5vw,72px);align-items:start}
@@ -88,6 +77,10 @@ body{margin:0;background:#170D0B}
 .door .body{color:var(--ink-2);max-width:40rem}
 .door .cta{padding-top:4px}
 @media (max-width: 760px){.door{grid-template-columns:minmax(0,1fr)}.door-problem{color:var(--ink-2)}}
+
+/* Divider: a plain accent line (hero foot, above the booking heading). */
+.rule{height:2px;background:var(--accent);border-radius:2px}
+.rule-short{width:64px;margin-bottom:8px}
 
 .split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:clamp(28px,5vw,80px);align-items:start}
 .hl mark{background:var(--accent-soft);color:var(--ink);padding:.06em .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:2px}
@@ -113,12 +106,8 @@ body{margin:0;background:#170D0B}
   .node{top:26px;left:-40px}
 }
 
-.needs{border:1px dashed var(--field);border-radius:6px;padding:clamp(20px,3vw,28px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px 20px;align-items:start}
 
 .band{background:var(--band);color:var(--on-band)}
-.band .ledge{background:var(--on-band)}
-.band .b-joint{fill:var(--band)}
-.band .b-solid{stroke:var(--on-band);stroke-width:2}
 .lead p{color:var(--on-band-2)}
 .lead p strong{color:var(--on-band);font-weight:600}
 .form-card{background:var(--surface);color:var(--ink);border-radius:8px;padding:clamp(22px,3vw,36px);display:flex;flex-direction:column;gap:18px}
@@ -145,7 +134,7 @@ body{margin:0;background:#170D0B}
 .ism{
   --glow:color-mix(in oklab,var(--accent) 16%,transparent);
   --grid:rgba(229,92,12,.06);--grid-major:rgba(229,92,12,.11);
-  --land:color-mix(in oklab,var(--accent) 9%,transparent);--contour:rgba(229,92,12,.26);
+  --contour:rgba(229,92,12,.26);
   --glass:rgba(251,249,244,.56);
   --glass-strong:rgba(251,249,244,.86);
   --glass-edge:rgba(255,255,255,.8);
@@ -161,18 +150,17 @@ body{margin:0;background:#170D0B}
   background-size:auto,auto,224px 224px,224px 224px,56px 56px,56px 56px;
   position:relative;isolation:isolate;
 }
-/* Topographic layer: island fills + contour lines, tinted by theme */
+/* Topographic layer: contour lines only, tinted by theme */
 .topo{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .topo>div{position:absolute;inset:0;
   -webkit-mask-size:1600px 1600px;mask-size:1600px 1600px;
   -webkit-mask-repeat:repeat;mask-repeat:repeat;
   -webkit-mask-position:-220px -140px;mask-position:-220px -140px}
-.topo-land{background:var(--land);-webkit-mask-image:url(assets/topo-land.svg);mask-image:url(assets/topo-land.svg)}
 .topo-lines{background:var(--contour);-webkit-mask-image:url(assets/topo-lines.svg);mask-image:url(assets/topo-lines.svg)}
 .ism.t-dark{
   --glow:color-mix(in oklab,var(--accent) 17%,transparent);
   --grid:rgba(255,255,255,.03);--grid-major:rgba(255,255,255,.06);
-  --land:color-mix(in oklab,var(--accent) 6%,transparent);--contour:rgba(242,133,63,.17);
+  --contour:rgba(242,133,63,.17);
   --glass:rgba(40,38,34,.5);
   --glass-strong:rgba(30,28,25,.84);
   --glass-edge:rgba(255,255,255,.1);
@@ -183,7 +171,7 @@ body{margin:0;background:#170D0B}
   .ism.t-auto{
     --glow:color-mix(in oklab,var(--accent) 17%,transparent);
     --grid:rgba(255,255,255,.03);--grid-major:rgba(255,255,255,.06);
-  --land:color-mix(in oklab,var(--accent) 6%,transparent);--contour:rgba(242,133,63,.17);
+  --contour:rgba(242,133,63,.17);
     --glass:rgba(40,38,34,.5);
     --glass-strong:rgba(30,28,25,.84);
     --glass-edge:rgba(255,255,255,.1);
@@ -191,7 +179,7 @@ body{margin:0;background:#170D0B}
     --glass-shadow:rgba(0,0,0,.5);
   }
 }
-.glass,.door,.step-card,.needs,.form-card{
+.glass,.door,.step-card,.form-card{
   background:var(--glass);
   -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
   border:1px solid var(--glass-edge);
@@ -249,15 +237,6 @@ body{margin:0;background:#170D0B}
 }
 .ism .door a.btn-ghost:hover{background:var(--ink);color:var(--bg)}
 
-/* Problem lead-in: last line pulls the eye down to the doors */
-.ism a.problem-next{display:inline-flex;flex-direction:column;align-items:flex-start;gap:18px;margin-top:clamp(20px,3vw,36px);
-  text-decoration:none;color:var(--accent-text);font-size:clamp(24px,2.8vw,36px);font-weight:600;letter-spacing:-.025em;line-height:1.2}
-.ism a.problem-next:hover{color:var(--ink)}
-.drop{margin-left:4px;animation:nudge 2.4s ease-in-out infinite}
-.drop path{fill:none;stroke:var(--brand);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.drop path:first-child{stroke-dasharray:3 6}
-@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
-@media (prefers-reduced-motion: reduce){.drop{animation:none}}
 
 .door-tag{display:flex;align-items:center;gap:16px}
 /* Door icons: line art only */
@@ -278,14 +257,13 @@ body{margin:0;background:#170D0B}
 .ic-spark{fill:var(--accent-text)}
 
 @media (prefers-reduced-transparency: reduce){
-  .glass,.door,.step-card,.needs,.form-card,.hdr{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}
+  .glass,.door,.step-card,.form-card,.hdr{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}
   .ism .door a.btn-ghost{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}
 }
 @media (prefers-reduced-motion: reduce){.door{transition:none}.door:hover{transform:none}}
 
 @media (prefers-reduced-motion: reduce){
   .ph,.btn,.btn svg,.faq .plus{transition:none}
-  .hero .b-arc{animation:none;stroke-dashoffset:0}
 }
 
 /* Header menu */
@@ -407,7 +385,7 @@ body{margin:0;background:#170D0B}
 .offer-includes ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px 24px}
 .offer-includes li{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:500;color:var(--ink)}
 .offer-includes svg{flex:none;color:var(--accent-text)}
-.approach-close{align-self:center;text-align:center;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.35;max-width:36ch;text-wrap:balance}
+.approach-close{align-self:flex-start;text-align:left;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.35}
 .approach-close span{color:var(--accent-text)}
 @media (max-width: 900px){
   .approach-head{grid-template-columns:minmax(0,1fr);align-items:start}
@@ -454,7 +432,7 @@ body{margin:0;background:#170D0B}
     transition:opacity .3s ease,visibility .3s,transform .3s ease}
   .ism a.scroll-cue,.ism a.scroll-cue:hover{color:var(--ink)}
   .scroll-cue.is-gone{opacity:0;visibility:hidden;transform:translateY(8px)}
-  /* Keep the bridge and caption clear of the floating cue on first load. */
+  /* Keep the line and caption clear of the floating cue on first load. */
   .hero .hero-base{margin-top:clamp(96px,16vh,150px) !important}
 }
 @media (max-width: 899px) and (prefers-reduced-transparency: reduce){.scroll-cue{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}
@@ -494,3 +472,9 @@ body{margin:0;background:#170D0B}
 .book-done .form-note{text-align:left}
 /* Problem section label: caps, in the same ember red as "not to". */
 .eyebrow-ember{color:var(--ember);text-transform:uppercase;letter-spacing:.08em}
+/* After the doors: a way in for visitors who don't see themselves in one. */
+.doors-more{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding:4px 4px 0}
+.doors-more p:not(.mono){font-size:clamp(22px,2.4vw,30px);font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.doors-more strong{font-weight:inherit}
+.doors-more span{color:var(--accent-text)}
+.doors-more-label{color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em}

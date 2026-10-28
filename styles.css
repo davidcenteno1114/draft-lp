@@ -86,10 +86,10 @@ body{margin:0;background:#170D0B}
 .hl mark{background:var(--accent-soft);color:var(--ink);padding:.06em .18em;-webkit-box-decoration-break:clone;box-decoration-break:clone;border-radius:2px}
 
 .steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;position:relative}
-.steps::before{content:"";position:absolute;top:15px;left:10px;right:6px;height:2px;background:var(--brand)}
-.steps::after{content:"";position:absolute;top:10px;right:0;width:12px;height:12px;background:var(--brand)}
+.steps::before{content:"";position:absolute;top:15px;left:10px;right:6px;height:2px;background:var(--accent)}
+.steps::after{content:"";position:absolute;top:10px;right:0;width:12px;height:12px;background:var(--accent)}
 .step{position:relative;padding-top:48px;display:flex}
-.node{position:absolute;top:6px;left:0;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--brand)}
+.node{position:absolute;top:6px;left:0;width:20px;height:20px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
 .step.free .node{background:var(--accent);border-color:var(--accent)}
 .step-card{background:var(--surface);border:1px solid var(--line);border-radius:6px;padding:24px;display:flex;flex-direction:column;gap:14px;width:100%}
 .step.free .step-card{background:var(--band);color:var(--on-band);border:2px solid var(--accent)}
@@ -133,8 +133,8 @@ body{margin:0;background:#170D0B}
 /* ---------- Glass layer ---------- */
 .ism{
   --glow:color-mix(in oklab,var(--accent) 16%,transparent);
-  --grid:rgba(229,92,12,.06);--grid-major:rgba(229,92,12,.11);
-  --contour:rgba(229,92,12,.26);
+  --grid:rgba(4,196,202,.04);--grid-major:rgba(4,196,202,.07);
+  --contour:rgba(4,196,202,.16);
   --glass:rgba(251,249,244,.56);
   --glass-strong:rgba(251,249,244,.86);
   --glass-edge:rgba(255,255,255,.8);
@@ -159,8 +159,8 @@ body{margin:0;background:#170D0B}
 .topo-lines{background:var(--contour);-webkit-mask-image:url(assets/topo-lines.svg);mask-image:url(assets/topo-lines.svg)}
 .ism.t-dark{
   --glow:color-mix(in oklab,var(--accent) 17%,transparent);
-  --grid:rgba(255,255,255,.03);--grid-major:rgba(255,255,255,.06);
-  --contour:rgba(242,133,63,.17);
+  --grid:rgba(4,196,202,.025);--grid-major:rgba(4,196,202,.045);
+  --contour:rgba(4,196,202,.09);
   --glass:rgba(40,38,34,.5);
   --glass-strong:rgba(30,28,25,.84);
   --glass-edge:rgba(255,255,255,.1);
@@ -170,8 +170,8 @@ body{margin:0;background:#170D0B}
 @media (prefers-color-scheme: dark){
   .ism.t-auto{
     --glow:color-mix(in oklab,var(--accent) 17%,transparent);
-    --grid:rgba(255,255,255,.03);--grid-major:rgba(255,255,255,.06);
-  --contour:rgba(242,133,63,.17);
+    --grid:rgba(4,196,202,.025);--grid-major:rgba(4,196,202,.045);
+  --contour:rgba(4,196,202,.09);
     --glass:rgba(40,38,34,.5);
     --glass-strong:rgba(30,28,25,.84);
     --glass-edge:rgba(255,255,255,.1);
@@ -193,7 +193,7 @@ body{margin:0;background:#170D0B}
   background-color:var(--band);
   background-image:
     radial-gradient(34rem 24rem at 22% 40%,color-mix(in oklab,var(--accent) 30%,transparent),transparent 70%),
-    radial-gradient(30rem 22rem at 80% 66%,color-mix(in oklab,var(--brand) 22%,transparent),transparent 70%),
+    radial-gradient(30rem 22rem at 80% 66%,color-mix(in oklab,var(--accent) 22%,transparent),transparent 70%),
     radial-gradient(60rem 30rem at 50% 50%,color-mix(in oklab,var(--accent) 10%,transparent),transparent 75%),
     linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
     linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
@@ -213,11 +213,11 @@ body{margin:0;background:#170D0B}
     radial-gradient(38rem 26rem at 10% 34%,var(--glow),transparent 70%),
     radial-gradient(40rem 28rem at 92% 74%,var(--glow),transparent 70%);
 }
-/* Our Approach and the steps: cyan and orange glow pooled behind the glass. */
+/* Our Approach and the steps: cyan glow pooled behind the glass. */
 .glow-section{
   background-image:
     radial-gradient(34rem 24rem at 22% 40%,color-mix(in oklab,var(--accent) 30%,transparent),transparent 70%),
-    radial-gradient(30rem 22rem at 80% 66%,color-mix(in oklab,var(--brand) 22%,transparent),transparent 70%),
+    radial-gradient(30rem 22rem at 80% 66%,color-mix(in oklab,var(--accent) 22%,transparent),transparent 70%),
     radial-gradient(60rem 30rem at 50% 50%,color-mix(in oklab,var(--accent) 10%,transparent),transparent 75%);
 }
 .door{

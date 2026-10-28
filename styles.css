@@ -206,7 +206,7 @@ body{margin:0;background:#170D0B}
 @media (prefers-color-scheme: dark){
   .ism.t-auto{--sheen:rgba(255,255,255,.075);--glass-door:rgba(42,40,36,.34);--btn-glass:rgba(255,255,255,.06)}
 }
-#doors{
+.doors-section{
   background-image:
     radial-gradient(38rem 26rem at 10% 34%,var(--glow),transparent 70%),
     radial-gradient(40rem 28rem at 92% 74%,var(--glow),transparent 70%);

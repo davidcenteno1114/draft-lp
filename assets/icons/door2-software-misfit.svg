@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" width="160" height="160" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="Software that doesn't fit"><title>Software that doesn't fit</title>
+  <defs>
+    <mask id="cut" maskUnits="userSpaceOnUse" x="0" y="0" width="40" height="40">
+      <rect x="0" y="0" width="40" height="40" fill="#FFFFFF" stroke="none"/>
+      <rect x="21.5" y="20.5" width="13" height="12" rx="2.2" transform="rotate(14 28 27)" fill="#000000" stroke="#000000" stroke-width="4.5"/>
+    </mask>
+  </defs>
+  <g mask="url(#cut)">
+    <rect x="4" y="6" width="27" height="23" rx="3"/>
+    <path d="M4 11.5h27M7.8 8.8h.01M10.8 8.8h.01"/>
+    <rect x="9" y="16" width="9" height="8" rx="1.5" stroke-dasharray="2.5 3"/>
+  </g>
+  <rect x="21.5" y="20.5" width="13" height="12" rx="2.2" transform="rotate(14 28 27)"/>
+</svg>

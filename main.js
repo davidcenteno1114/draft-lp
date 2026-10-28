@@ -75,6 +75,15 @@
     });
   }
 
+  // Mobile booking bar: step aside while the booking section is on screen.
+  var bar = document.querySelector('.mobile-cta');
+  var bookSection = document.getElementById('book');
+  if (bar && bookSection && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      bar.classList.toggle('is-hidden', entries[0].isIntersecting);
+    }).observe(bookSection);
+  }
+
   // Booking: hand the form off to Calendly with the answers prefilled.
   if (form) {
     form.addEventListener('submit', function (e) {

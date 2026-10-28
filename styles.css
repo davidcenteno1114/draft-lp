@@ -310,3 +310,19 @@ body{margin:0;background:#170D0B}
   .problem-grid{display:grid;grid-template-columns:minmax(0,48rem) auto;justify-content:space-between;align-items:center;gap:clamp(32px,5vw,80px)}
   .problem-art{display:block;width:clamp(240px,26vw,360px);height:auto}
 }
+/* Mobile: booking button pinned to the bottom, within thumb reach.
+   It slides away while the booking section itself is on screen. */
+.mobile-cta{display:none}
+@media (max-width: 899px){
+  .ism{padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+  .mobile-cta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:30;
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    background:color-mix(in oklab,var(--bg) 70%,transparent);
+    -webkit-backdrop-filter:blur(22px) saturate(1.5);backdrop-filter:blur(22px) saturate(1.5);
+    border-top:1px solid var(--glass-edge);
+    transition:transform .25s ease,visibility .25s}
+  .mobile-cta .btn{width:100%}
+  .mobile-cta.is-hidden{transform:translateY(100%);visibility:hidden}
+}
+@media (prefers-reduced-motion: reduce){.mobile-cta{transition:none}}
+@media (prefers-reduced-transparency: reduce){.mobile-cta{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}

@@ -10,10 +10,26 @@
   var i = 0, timer = null, paused = false, reduced = false;
   try { reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
 
+  // Desktop keeps "not to" and the phrase on one centred line: the phrase box
+  // eases to each phrase's width so the line re-centres instead of leaving a gap.
+  var rot = h1 && h1.querySelector('.rot');
+  var wide = window.matchMedia('(min-width: 900px)');
+  function fitRot() {
+    if (!rot || !phrases.length) return;
+    rot.style.width = wide.matches ? phrases[i].offsetWidth + 'px' : '';
+  }
   function show(n) {
     phrases[i].classList.remove('on');
     i = n;
     phrases[i].classList.add('on');
+    fitRot();
+  }
+  fitRot();
+  window.addEventListener('resize', fitRot);
+  // Re-measure when a phrase changes size, e.g. once the heading font has loaded.
+  if (rot && 'ResizeObserver' in window) {
+    var ro = new ResizeObserver(fitRot);
+    phrases.forEach(function (ph) { ro.observe(ph); });
   }
   function queue() {
     clearTimeout(timer);
@@ -38,6 +54,28 @@
       });
     }
   }
+
+  // Scroll progress: the bar under the header shows how far down the page you are.
+  // On mobile the floating "Learn more" cue leaves once the problem section is on screen.
+  var progress = document.querySelector('.scroll-progress');
+  var cue = document.querySelector('.scroll-cue');
+  var problemTitle = document.getElementById('the-problem');
+  var problem = problemTitle && problemTitle.closest('section');
+  var ticking = false;
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY;
+    if (cue && problem) cue.classList.toggle('is-gone', problem.getBoundingClientRect().top < window.innerHeight * 0.85);
+    if (progress) {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.setProperty('--progress', max > 0 ? Math.min(1, y / max) : 0);
+    }
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  window.addEventListener('resize', onScroll);
+  onScroll();
 
   // Header menu: burger toggles it; a link, Escape or a click outside closes it.
   var burger = document.querySelector('.burger');

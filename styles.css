@@ -56,15 +56,17 @@ body{margin:0;background:#170D0B}
 .ism a.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
 .ism a.btn-ghost:hover{background:var(--ink);color:var(--bg)}
 
-.h1{font-size:clamp(36px,6.3vw,88px);line-height:1.02;letter-spacing:-.038em;font-weight:600;max-width:15.5ch}
+/* Hero and section headings use Poppins, the typeface of the Ismoo wordmark. */
+.h1{font-family:'Poppins',ui-sans-serif,system-ui,sans-serif;font-size:clamp(34px,min(5.8vw,8.4vh),82px);line-height:1.08;letter-spacing:-.025em;font-weight:600;max-width:15.5ch}
 .rot{display:grid;color:var(--ember);cursor:default}
 .ember{color:var(--ember)}
 /* Hero sits on a solid black band. */
-.hero{background:#000}
+/* Fades into the page instead of ending on a hard edge (no "false bottom"). */
+.hero{background:linear-gradient(to bottom,#000 calc(100% - 160px),transparent)}
 .hero .b-joint{fill:#000}
 .ph{grid-area:1/1;opacity:0;transform:translateY(.22em);transition:opacity .5s ease,transform .5s cubic-bezier(.2,.7,.2,1)}
 .ph.on{opacity:1;transform:none}
-.h2{font-size:clamp(32px,4.4vw,56px);line-height:1.04;letter-spacing:-.032em;font-weight:600}
+.h2{font-family:'Poppins',ui-sans-serif,system-ui,sans-serif;font-size:clamp(30px,4.1vw,52px);line-height:1.12;letter-spacing:-.022em;font-weight:600}
 
 .bridge{display:flex;align-items:flex-end}
 .ledge{height:6px;background:var(--brand);flex:1 1 0}
@@ -423,3 +425,36 @@ body{margin:0;background:#170D0B}
   .offer-icon{grid-row:1 / span 2;width:56px;height:56px;border-radius:14px;margin:0}
   .offer-icon img{width:34px;height:34px}
 }
+/* Scroll signals: a cue at the bottom of the hero, and reading progress under the header. */
+.scroll-cue{display:inline-flex;flex-direction:column;align-items:center;gap:2px;margin-top:clamp(28px,5vh,56px);padding:6px 12px;
+  font-family:'Geist Mono',ui-monospace,Menlo,Consolas,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.ism a.scroll-cue,.ism a.scroll-cue:hover{color:var(--ink-2);text-decoration:none}
+.ism a.scroll-cue:hover{color:var(--ink)}
+.scroll-cue svg{animation:cue 1.8s ease-in-out infinite}
+@keyframes cue{0%,100%{transform:translateY(-2px);opacity:.6}50%{transform:translateY(3px);opacity:1}}
+.scroll-progress{position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none}
+.scroll-progress span{display:block;height:100%;width:100%;transform:scaleX(var(--progress,0));transform-origin:left;background:var(--accent)}
+@media (prefers-reduced-motion: reduce){.scroll-cue svg{animation:none}}
+/* Desktop hero headline: "You built your business to grow," on line one,
+   "not to [phrase]" on line two. Sized so the longer line (~16.3em in Poppins) fits. */
+@media (max-width: 899px){.desk-br{display:none}}
+@media (min-width: 900px){
+  .hero .h1{max-width:none;font-size:clamp(36px,min(8.4vh,calc((min(100vw,1200px) - 100px) / 16.3)),82px)}
+  .hero .rot{display:inline-grid;justify-items:start;vertical-align:top;transition:width .45s cubic-bezier(.2,.7,.2,1)}
+  .hero .ph{white-space:nowrap}
+}
+@media (prefers-reduced-motion: reduce){.hero .rot{transition:none}}
+/* Phones and small tablets: the "Learn more" cue floats at the bottom right
+   until the visitor reaches the problem section. */
+@media (max-width: 899px){
+  .scroll-cue{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:26;margin:0;
+    flex-direction:row;gap:6px;padding:10px 14px;border-radius:999px;
+    background:color-mix(in oklab,var(--bg) 60%,transparent);-webkit-backdrop-filter:blur(14px) saturate(1.4);backdrop-filter:blur(14px) saturate(1.4);
+    border:1px solid var(--glass-edge);box-shadow:0 10px 24px -12px rgba(0,0,0,.6);
+    transition:opacity .3s ease,visibility .3s,transform .3s ease}
+  .ism a.scroll-cue,.ism a.scroll-cue:hover{color:var(--ink)}
+  .scroll-cue.is-gone{opacity:0;visibility:hidden;transform:translateY(8px)}
+  /* Keep the bridge and caption clear of the floating cue on first load. */
+  .hero .hero-base{margin-top:clamp(96px,16vh,150px) !important}
+}
+@media (max-width: 899px) and (prefers-reduced-transparency: reduce){.scroll-cue{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}

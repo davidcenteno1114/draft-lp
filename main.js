@@ -57,10 +57,36 @@
   }
 
   // Doors: remember which one was picked so the booking form can pass it on.
+  // Picking a door (desktop button, or tapping the card on phones) also pre-fills
+  // "What's getting in your way?" with its label, unless the visitor has typed there.
   var form = document.getElementById('book-form');
-  document.querySelectorAll('[data-door]').forEach(function (a) {
-    a.addEventListener('click', function () {
-      if (form) form.elements.door.value = a.getAttribute('data-door');
+  var doors = document.querySelectorAll('.door');
+  var prefilled = '';
+  function pickDoor(door) {
+    doors.forEach(function (d) {
+      var on = d === door;
+      d.classList.toggle('is-selected', on);
+      var sel = d.querySelector('.door-select');
+      if (sel) sel.setAttribute('aria-pressed', String(on));
+    });
+    if (!form) return;
+    var cta = door && door.querySelector('[data-door]');
+    var label = door ? door.querySelector('.door-problem').textContent.replace(/\s+/g, ' ').trim() : '';
+    form.elements.door.value = cta ? cta.getAttribute('data-door') : '';
+    var blocker = form.elements.blocker;
+    if (blocker.value === '' || blocker.value === prefilled) {
+      blocker.value = label;
+      prefilled = label;
+      blocker.setCustomValidity('');
+      if (label) blocker.classList.remove('is-invalid');
+    }
+  }
+  doors.forEach(function (door) {
+    var cta = door.querySelector('[data-door]');
+    if (cta) cta.addEventListener('click', function () { pickDoor(door); });
+    var sel = door.querySelector('.door-select');
+    if (sel) sel.addEventListener('click', function () {
+      pickDoor(door.classList.contains('is-selected') ? null : door);
     });
   });
 

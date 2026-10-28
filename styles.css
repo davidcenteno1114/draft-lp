@@ -346,3 +346,13 @@ body{margin:0;background:#170D0B}
 }
 @media (prefers-reduced-motion: reduce){.mobile-cta{transition:none}}
 @media (prefers-reduced-transparency: reduce){.mobile-cta{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Booking form: what happens after submit. */
+.form-note{margin-top:-4px;font-size:14px;line-height:1.45;color:var(--ink-2);text-align:center}
+/* Phones: the whole door card is a tap target that selects that door. */
+.door-select{display:none}
+@media (max-width: 899px){
+  .door{position:relative}
+  .door-select{display:block;position:absolute;inset:0;z-index:1;width:100%;margin:0;padding:0;border:0;border-radius:16px;background:transparent;cursor:pointer;-webkit-tap-highlight-color:transparent}
+  .ism .door-select:focus-visible{outline-offset:-3px;border-radius:16px}
+  .door.is-selected{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent),0 0 28px -6px color-mix(in oklab,var(--accent) 55%,transparent),0 28px 56px -28px var(--glass-shadow)}
+}

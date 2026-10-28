@@ -16,7 +16,8 @@
 <script src="main.js" defer></script>
 </head>
 <body>
-<div class="ism t-dark" data-calendly="https://calendly.com/ismoo/45-minute-call">
+<!-- data-booking-endpoint: the Google Apps Script web app URL (see apps-script/SETUP.md). -->
+<div class="ism t-dark" data-booking-endpoint="https://script.google.com/macros/s/AKfycbw-USOY7JJXz7czmsvI0YEsnIG61EPNq_YQGum_-0q4pwR3gjnSGkUm5IjmBmA4qqgf/exec">
 <div class="topo" aria-hidden="true"><div class="topo-land"></div><div class="topo-lines"></div></div>
 
 <header class="hdr">
@@ -301,10 +302,24 @@
 <option value="Other">Other</option>
 </select>
 </div>
+<fieldset class="field slot-picker" id="slot-picker">
+<legend>Pick a time <span class="mono slot-tz">Philippine time (GMT+8)</span></legend>
+<div class="slot-days" role="group" aria-label="Day"></div>
+<div class="slot-times" role="radiogroup" aria-label="Time"></div>
+<p class="slot-status" aria-live="polite">Loading available times…</p>
+</fieldset>
+<div class="hp" aria-hidden="true"><label for="f-website">Website</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="door" value="">
 <button type="submit" class="btn" style="width: 100%; margin-top: 6px">Book a Discovery Call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M13 6l6 6-6 6"></path></svg></button>
-<p class="form-note">Next, you'll pick a time on our calendar. It opens in a new tab.</p>
+<p class="form-note">You'll get a calendar invite with a Google Meet link.</p>
 </form>
+<div class="form-card book-done" id="book-done" hidden tabindex="-1">
+<span class="done-icon" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+<h3>You're booked.</h3>
+<p class="done-when"></p>
+<p>We've sent a calendar invite with a Google Meet link to <strong class="done-email"></strong>. Ervin and David will see you there.</p>
+<p class="form-note">Need a different time? Reply to the invite or email <a href="mailto:letsbuild@ismoo.tech">letsbuild@ismoo.tech</a>.</p>
+</div>
 </div>
 </section>
 

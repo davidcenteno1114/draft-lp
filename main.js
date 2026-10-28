@@ -182,22 +182,171 @@
     });
   }
 
-  // Booking: hand the form off to Calendly with the answers prefilled.
-  if (form) {
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
+  // Booking: open times come from the Google Apps Script web app (apps-script/booking.gs),
+  // which also creates the calendar invite. Without it, booking falls back to email.
+  var endpoint = (root && root.getAttribute('data-booking-endpoint')) || '';
+  var picker = document.getElementById('slot-picker');
+  var done = document.getElementById('book-done');
+  if (form && picker) {
+    var daysEl = picker.querySelector('.slot-days');
+    var timesEl = picker.querySelector('.slot-times');
+    var statusEl = picker.querySelector('.slot-status');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    var submitHTML = submitBtn.innerHTML;
+    var TZ = 'Asia/Manila';
+    var fmtDay = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, weekday: 'short' });
+    var fmtDate = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, month: 'short', day: 'numeric' });
+    var fmtKey = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' });
+    var fmtTime = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
+    var fmtFull = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    var byDay = {}, dayKeys = [], online = false;
+
+    var setStatus = function (msg) { statusEl.textContent = msg; };
+    var selectedSlot = function () {
+      var r = timesEl.querySelector('input[name="slot"]:checked');
+      return r ? r.value : '';
+    };
+
+    function renderTimes(key) {
+      timesEl.textContent = '';
+      daysEl.querySelectorAll('.slot-day').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.dataset.key === key));
+      });
+      (byDay[key] || []).forEach(function (s) {
+        var label = document.createElement('label');
+        label.className = 'slot-time';
+        var input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'slot';
+        input.value = s.start;
+        input.addEventListener('change', function () { picker.classList.remove('is-invalid'); setStatus(''); });
+        var span = document.createElement('span');
+        span.textContent = fmtTime.format(new Date(s.start));
+        label.appendChild(input);
+        label.appendChild(span);
+        timesEl.appendChild(label);
+      });
+    }
+
+    function renderSlots(slots) {
+      byDay = {}; dayKeys = [];
+      slots.forEach(function (s) {
+        var k = fmtKey.format(new Date(s.start));
+        if (!byDay[k]) { byDay[k] = []; dayKeys.push(k); }
+        byDay[k].push(s);
+      });
+      daysEl.textContent = '';
+      timesEl.textContent = '';
+      if (!dayKeys.length) {
+        online = false;
+        setStatus("We're fully booked for the next few weeks. Send the form and we'll email you to find a time.");
+        return;
+      }
+      dayKeys.forEach(function (k) {
+        var d = new Date(byDay[k][0].start);
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = 'slot-day';
+        b.dataset.key = k;
+        b.setAttribute('aria-pressed', 'false');
+        var w = document.createElement('span');
+        w.textContent = fmtDay.format(d);
+        var n = document.createElement('strong');
+        n.textContent = fmtDate.format(d);
+        b.appendChild(w);
+        b.appendChild(n);
+        b.addEventListener('click', function () { renderTimes(k); });
+        daysEl.appendChild(b);
+      });
+      online = true;
+      setStatus('');
+      renderTimes(dayKeys[0]);
+    }
+
+    function offline() {
+      online = false;
+      daysEl.textContent = '';
+      timesEl.textContent = '';
+      setStatus("Online booking isn't available right now. Send the form and we'll email you to find a time.");
+    }
+
+    function loadSlots(note) {
+      if (!endpoint) { offline(); return; }
+      setStatus('Loading available times…');
+      fetch(endpoint + (endpoint.indexOf('?') > -1 ? '&' : '?') + 'action=slots')
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data && data.ok) { renderSlots(data.slots || []); if (note && online) setStatus(note); } else offline();
+        })
+        .catch(offline);
+    }
+    loadSlots();
+
+    function details() {
       var f = new FormData(form);
       var get = function (k) { return String(f.get(k) || '').trim(); };
-      var base = (root && root.getAttribute('data-calendly')) || 'https://calendly.com/ismoo/45-minute-call';
-      var q = new URLSearchParams({
-        name: get('name'), email: get('email'),
-        a1: get('company'), a2: get('blocker'), a3: get('source'), a4: get('door')
-      });
-      var url = base + (base.indexOf('?') > -1 ? '&' : '?') + q.toString();
-      var w = null;
-      try { w = window.open(url, '_blank'); } catch (err) {}
-      if (w) { try { w.opener = null; } catch (err) {} }
-      else { window.location.assign(url); }
+      return {
+        name: get('name'), company: get('company'), email: get('email'), blocker: get('blocker'),
+        source: get('source'), door: get('door'), website: get('website'), start: selectedSlot()
+      };
+    }
+
+    // No live calendar: open an email to the team with everything filled in.
+    function emailFallback(d) {
+      var body = [
+        'Name: ' + d.name, 'Company: ' + d.company, 'Email: ' + d.email,
+        "What's getting in our way: " + d.blocker,
+        'How we found you: ' + (d.source || '-'), 'Door: ' + (d.door || '-'),
+        '', 'Please suggest a time for a Discovery Call.'
+      ].join('\n');
+      window.location.href = 'mailto:letsbuild@ismoo.tech?subject=' +
+        encodeURIComponent('Discovery Call request: ' + d.company) + '&body=' + encodeURIComponent(body);
+    }
+
+    function busy(on) {
+      submitBtn.disabled = on;
+      submitBtn.innerHTML = on ? 'Booking your call…' : submitHTML;
+    }
+
+    function showDone(d, start) {
+      done.querySelector('.done-when').textContent = fmtFull.format(new Date(start)) + ' (Philippine time)';
+      done.querySelector('.done-email').textContent = d.email;
+      form.hidden = true;
+      done.hidden = false;
+      done.focus({ preventScroll: true });
+      done.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = details();
+      if (!online) { emailFallback(d); return; }
+      if (!d.start) {
+        picker.classList.add('is-invalid');
+        setStatus('Oops, pick a time that works for you.');
+        picker.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+        return;
+      }
+      busy(true);
+      fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(d) })
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          busy(false);
+          if (res && res.ok) { showDone(d, res.start || d.start); return; }
+          var err = res && res.error;
+          if (err === 'slot_taken') {
+            picker.classList.add('is-invalid');
+            loadSlots('That time was just taken. Please pick another.');
+          } else if (err === 'already_booked') {
+            setStatus("You've just booked a call. Check your inbox for the invite, or email letsbuild@ismoo.tech to change it.");
+          } else {
+            setStatus("Something went wrong on our side. Please try again, or email letsbuild@ismoo.tech.");
+          }
+        })
+        .catch(function () {
+          busy(false);
+          setStatus("We couldn't reach our calendar. Please try again, or email letsbuild@ismoo.tech.");
+        });
     });
   }
 })();

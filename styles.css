@@ -458,3 +458,37 @@ body{margin:0;background:#170D0B}
   .hero .hero-base{margin-top:clamp(96px,16vh,150px) !important}
 }
 @media (max-width: 899px) and (prefers-reduced-transparency: reduce){.scroll-cue{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Booking: slot picker, spam trap, confirmation. */
+.form-card[hidden]{display:none}
+.slot-picker{border:0;margin:0;padding:0;min-width:0}
+.slot-picker legend{padding:0;margin-bottom:10px;font-size:15px;font-weight:550;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.slot-tz{color:var(--ink-2);font-weight:400;font-size:12px}
+.slot-days{display:flex;gap:8px;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:thin;scroll-snap-type:x proximity}
+.slot-days:empty,.slot-times:empty{display:none}
+.slot-day{flex:none;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:2px;min-width:64px;min-height:56px;padding:8px 10px;
+  border-radius:10px;border:1px solid var(--field);background:var(--bg);color:var(--ink);font:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+.slot-day span{font-size:12px;color:var(--ink-2);text-transform:uppercase;letter-spacing:.06em}
+.slot-day strong{font-size:16px;font-weight:600}
+.slot-day:hover{border-color:var(--ink-2)}
+.slot-day[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in oklab,var(--accent) 16%,var(--bg))}
+.slot-times{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px;margin-top:8px}
+.slot-time{position:relative}
+.slot-time input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.slot-time span{display:flex;align-items:center;justify-content:center;min-height:44px;border-radius:8px;border:1px solid var(--field);background:var(--bg);font-size:15px;font-weight:500;transition:border-color .15s,background .15s}
+.slot-time input:hover+span{border-color:var(--ink-2)}
+.slot-time input:checked+span{border-color:var(--accent);background:var(--accent);color:var(--on-accent);font-weight:600}
+.slot-time input:focus-visible+span{outline:2px solid var(--focus);outline-offset:2px}
+.slot-status{font-size:14px;color:var(--ink-2);margin-top:8px}
+.slot-status:empty{display:none}
+.slot-picker.is-invalid .slot-times,.slot-picker.is-invalid .slot-days{border-radius:10px;box-shadow:0 0 0 3px color-mix(in oklab,var(--brand) 28%,transparent),0 0 18px -2px color-mix(in oklab,var(--brand) 45%,transparent)}
+.slot-picker.is-invalid .slot-status{color:var(--brand)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.btn[disabled]{opacity:.6;cursor:progress}
+.book-done{align-items:flex-start;gap:12px}
+.ism .book-done:focus{outline:none}
+.book-done .done-icon{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--accent);color:var(--on-accent)}
+.book-done h3{font-size:clamp(24px,2.4vw,30px);font-weight:600;letter-spacing:-.02em}
+.book-done .done-when{font-size:18px;font-weight:600;color:var(--accent-text)}
+.book-done p{color:var(--ink-2)}
+.book-done strong{color:var(--ink)}
+.book-done .form-note{text-align:left}

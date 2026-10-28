@@ -365,9 +365,9 @@ body{margin:0;background:#170D0B}
 .door-offer{color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em}
 /* Our Approach: intro, "What we build" glass card, closing line. */
 .approach{display:flex;flex-direction:column;gap:clamp(36px,5vw,56px)}
-.approach-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px clamp(32px,6vw,96px);align-items:end}
-.approach-lede{display:flex;flex-direction:column;gap:14px;font-size:clamp(18px,1.6vw,20px);line-height:1.55;color:var(--ink-2);max-width:32rem}
-.approach-lede p:last-child{color:var(--ink);font-weight:600}
+.approach-head{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:start}
+.approach-lede{display:flex;flex-direction:column;gap:14px;font-size:clamp(18px,1.6vw,20px);line-height:1.55;color:var(--ink-2)}
+.approach-lede p:last-child:not(:first-child){color:var(--ink);font-weight:600}
 .offer-card{border-radius:20px;padding:clamp(24px,4vw,48px);display:flex;flex-direction:column;gap:clamp(24px,3vw,36px)}
 .offer-h{color:var(--ink-2);text-transform:uppercase;letter-spacing:.1em;font-size:12px}
 .offer-grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
@@ -388,7 +388,6 @@ body{margin:0;background:#170D0B}
 .approach-close{align-self:flex-start;text-align:left;font-size:clamp(20px,2.2vw,28px);font-weight:600;letter-spacing:-.02em;line-height:1.35}
 .approach-close span{color:var(--accent-text)}
 @media (max-width: 900px){
-  .approach-head{grid-template-columns:minmax(0,1fr);align-items:start}
   .offer-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}
   .offer-grid li{padding:0 clamp(16px,3vw,28px)}
   .offer-grid li:nth-child(odd){padding-left:0;border-left:0}

@@ -62,7 +62,7 @@ Your tools should make that easier, not harder.
 
 *Positioning line, larger and brighter than the line above:*
 
-We build custom software, automation and AI integration for Philippine businesses that have outgrown generic systems.
+We help growing Philippine businesses move beyond spreadsheets and workarounds with custom software, automation, and practical AI.
 
 **Book a Discovery Call** *(button)*
 
@@ -382,7 +382,7 @@ It depends on what we build. Deeper Dive ends with a committed timeline, so you 
 
 Ismoo *(logo)*
 
-We build custom software, automation and AI integration for Philippine businesses that have outgrown generic systems.
+We help growing Philippine businesses move beyond spreadsheets and workarounds with custom software, automation, and practical AI.
 
 **Book a Discovery Call** *(button)*
 
@@ -439,4 +439,4 @@ We build custom software, automation and AI integration for Philippine businesse
 - ***One call to action:*** *every booking button says "Book a Discovery Call". Door buttons are the only exception: they're problem-specific on purpose.*
 - ***Repeated lines:***
   - *"45 minutes / free / with the team that will actually build for you" now appears only in the booking section. Step 01 says "Free, 45 minutes, no obligation."*
-  - *The hero positioning line appears again, word for word, in the footer.*
+  - *The hero positioning line appears again, word for word, in the footer. Both now say "practical AI" where the rest of the page says "AI integration".*

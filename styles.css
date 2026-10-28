@@ -312,3 +312,8 @@ body{margin:0;background:#170D0B}
 }
 /* Desktop only: hidden once the booking section stacks into one column. */
 @media (max-width: 899px){.desk-only{display:none !important}}
+/* Problem section: copy on the left, big X tile on the right (desktop). */
+@media (min-width: 900px){
+  .problem-grid{display:grid;grid-template-columns:minmax(0,48rem) auto;justify-content:space-between;align-items:center;gap:clamp(32px,5vw,80px)}
+  .problem-art{display:block;width:clamp(240px,26vw,360px);height:auto}
+}

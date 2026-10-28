@@ -384,7 +384,7 @@ body{margin:0;background:#170D0B}
 .draft-note{border:1px dashed var(--brand);border-radius:10px;padding:14px 18px;font-size:15px}
 /* Door offering tag above each quote; offerings lines in the approach card. */
 .door-head{display:flex;flex-direction:column;gap:12px}
-.door-offer{color:var(--ink-2)}
+.door-offer{color:var(--ink-2);text-transform:uppercase;letter-spacing:.08em}
 /* Our Approach: intro, "What we build" glass card, closing line. */
 .approach{display:flex;flex-direction:column;gap:clamp(36px,5vw,56px)}
 .approach-head{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px clamp(32px,6vw,96px);align-items:end}
@@ -492,3 +492,5 @@ body{margin:0;background:#170D0B}
 .book-done p{color:var(--ink-2)}
 .book-done strong{color:var(--ink)}
 .book-done .form-note{text-align:left}
+/* Problem section label: caps, in the same ember red as "not to". */
+.eyebrow-ember{color:var(--ember);text-transform:uppercase;letter-spacing:.08em}

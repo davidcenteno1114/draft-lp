@@ -84,6 +84,29 @@
     }).observe(bookSection);
   }
 
+  // Booking form: friendlier messages than the browser's "Please fill out this field."
+  var missed = {
+    name: "Oops, you might have missed your name.",
+    company: "Oops, you might have missed your company name.",
+    email: "Oops, you might have missed your email.",
+    blocker: "Oops, you might have missed this. It helps us come to your call prepared."
+  };
+  if (form) {
+    Object.keys(missed).forEach(function (k) {
+      var field = form.elements[k];
+      if (!field) return;
+      field.addEventListener('invalid', function () {
+        field.classList.add('is-invalid');
+        if (field.validity.valueMissing) field.setCustomValidity(missed[k]);
+        else if (field.validity.typeMismatch) field.setCustomValidity("Hmm, that email doesn't look quite right. Mind checking it?");
+      });
+      field.addEventListener('input', function () {
+        field.setCustomValidity('');
+        if (field.checkValidity()) field.classList.remove('is-invalid');
+      });
+    });
+  }
+
   // Booking: hand the form off to Calendly with the answers prefilled.
   if (form) {
     form.addEventListener('submit', function (e) {

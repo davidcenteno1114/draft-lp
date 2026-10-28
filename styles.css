@@ -299,5 +299,16 @@ body{margin:0;background:#170D0B}
 .ism .menu li:last-child a{color:var(--accent-text);font-weight:600}
 @media (prefers-reduced-motion: reduce){.burger path,.burger[aria-expanded="true"] path{transition:none}.menu:not([hidden]){animation:none}}
 @media (prefers-reduced-transparency: reduce){.menu{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}}
+/* Desktop: the menu becomes inline header links; the last one is a button. */
+@media (min-width: 900px){
+  .btn.burger{display:none}
+  .menu,.menu[hidden]{display:block;position:static;min-width:0;padding:0;background:none;border:0;border-radius:0;box-shadow:none;-webkit-backdrop-filter:none;backdrop-filter:none;animation:none}
+  .menu ul{flex-direction:row;align-items:center;gap:4px}
+  .ism .menu a{min-height:44px;padding:0 12px;border-radius:6px;font-size:15px;color:var(--ink-2)}
+  .ism .menu a:hover{background:none;color:var(--ink)}
+  .ism .menu li:last-child{margin-left:12px}
+  .ism .menu li:last-child a{padding:0 16px;background:var(--accent);color:var(--on-accent);font-weight:600;transition:background .2s ease}
+  .ism .menu li:last-child a:hover{background:var(--accent-hover);color:var(--on-accent)}
+}
 /* Desktop only: hidden once the booking section stacks into one column. */
 @media (max-width: 899px){.desk-only{display:none !important}}

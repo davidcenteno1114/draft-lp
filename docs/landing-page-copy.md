@@ -124,7 +124,7 @@ As your business grows, the everyday work gets more complicated. Technology shou
 
 **Label:** Your team runs on copy-paste.
 
-Orders arrive on Viber, go into a spreadsheet, then get typed into the system again. Every handoff costs time and invites errors. We learn where hands touch the work, then automate what doesn't need a person.
+From Viber to a spreadsheet to the system, every order gets typed in by hand. That costs time and invites errors. We automate the steps that don't need a person.
 
 **Free up my team** *(button, desktop only)*
 
@@ -136,7 +136,7 @@ Orders arrive on Viber, go into a spreadsheet, then get typed into the system ag
 
 **Label:** You paid for software that doesn't fit.
 
-Half the features sit unopened, and the one screen your team needs doesn't exist. So they export, patch and work around it. We watch how your team really works, then tune what you have or build what's missing.
+Half the features go unused. The one your team needs isn't there. We tune what you have or build what's missing.
 
 **Make my software work** *(button, desktop only)*
 

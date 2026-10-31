@@ -142,21 +142,26 @@
     });
   }
 
-  // Mobile booking bar: step aside while the hero (which has its own button)
-  // or the booking section is on screen.
+  // Mobile booking bar: appears once "The problem with most…" reaches the spot
+  // "Learn more" scrolls it to, and steps aside while the booking section is on screen.
   var bar = document.querySelector('.mobile-cta');
-  var covered = [document.querySelector('.hero'), document.getElementById('book')].filter(Boolean);
-  if (bar && covered.length && 'IntersectionObserver' in window) {
-    var showing = [];
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (en) {
-        var i = showing.indexOf(en.target);
-        if (en.isIntersecting && i < 0) showing.push(en.target);
-        if (!en.isIntersecting && i > -1) showing.splice(i, 1);
-      });
-      bar.classList.toggle('is-hidden', showing.length > 0);
-    });
-    covered.forEach(function (el) { io.observe(el); });
+  var book = document.getElementById('book');
+  if (bar && problemTitle) {
+    var bookOn = false;
+    var updateBar = function () {
+      var line = parseFloat(getComputedStyle(problemTitle).scrollMarginTop) || 0;
+      var beforeProblem = problemTitle.getBoundingClientRect().top > line + 1;
+      bar.classList.toggle('is-hidden', beforeProblem || bookOn);
+    };
+    if (book && 'IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        bookOn = entries[entries.length - 1].isIntersecting;
+        updateBar();
+      }).observe(book);
+    }
+    window.addEventListener('scroll', updateBar, { passive: true });
+    window.addEventListener('resize', updateBar);
+    updateBar();
   }
 
   // Booking form: friendlier messages than the browser's "Please fill out this field."
@@ -198,7 +203,11 @@
     var fmtDate = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, month: 'short', day: 'numeric' });
     var fmtKey = new Intl.DateTimeFormat('en-CA', { timeZone: TZ, year: 'numeric', month: '2-digit', day: '2-digit' });
     var fmtTime = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, hour: 'numeric', minute: '2-digit' });
+    var fmtAvailabilityTime = new Intl.DateTimeFormat('en-GB', { timeZone: TZ, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' });
     var fmtFull = new Intl.DateTimeFormat('en-PH', { timeZone: TZ, weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
+    // Offer only these call times, on the next few days that still have one open.
+    var allowedTimes = ['09:00', '11:00', '13:00'];
+    var maxDays = 5;
     var byDay = {}, dayKeys = [], online = false;
 
     var setStatus = function (msg) { statusEl.textContent = msg; };
@@ -230,9 +239,19 @@
 
     function renderSlots(slots) {
       byDay = {}; dayKeys = [];
-      slots.forEach(function (s) {
-        var k = fmtKey.format(new Date(s.start));
-        if (!byDay[k]) { byDay[k] = []; dayKeys.push(k); }
+      var now = new Date();
+      // Weekends and fully booked days have no open times, so they don't use up a day.
+      slots.slice().sort(function (a, b) {
+        return new Date(a.start) - new Date(b.start);
+      }).forEach(function (s) {
+        var start = new Date(s.start);
+        if (isNaN(start.getTime()) || start <= now) return;
+        if (allowedTimes.indexOf(fmtAvailabilityTime.format(start)) === -1) return;
+        var k = fmtKey.format(start);
+        if (!byDay[k]) {
+          if (dayKeys.length >= maxDays) return;
+          byDay[k] = []; dayKeys.push(k);
+        }
         byDay[k].push(s);
       });
       daysEl.textContent = '';

@@ -8,7 +8,7 @@
 - *The doors section has a new heading and intro: "Meeting you where you are".*
 - *Our approach has a new heading and intro: "Built for you. With you."*
 - *Door 3 (AI) has a new opening.*
-- *There are now four doors. The fifth ("Something's off") was removed, and a "Not sure where to start" line follows the doors instead.*
+- *There are now three doors. "Something's off" and "It works today. Will it work at twice the size?" were removed, and a "Ready to Scale? Not sure where to start?" line follows the doors instead.*
 - *Booking now happens on the page: visitors pick a time in the form and get a calendar invite.*
 
 *What to review:*
@@ -37,7 +37,7 @@
 *A sticky bar that stays at the top while scrolling. On desktop the links sit in a row. On phones and tablets they sit behind a menu button.*
 
 - Ismoo *(logo)*
-- The Problem *(link: jumps to "Built for everyone…")*
+- The Problem *(link: jumps to "The problem with most pre-built software systems")*
 - Our Approach *(link: jumps to "Built for you. With you.")*
 - How it works *(link: jumps to "Start risk-free.")*
 - **Book a Discovery Call** *(button on desktop: jumps to the booking form)*
@@ -66,7 +66,7 @@ We help growing Philippine businesses move beyond spreadsheets and workarounds w
 
 **Book a Discovery Call** *(button)*
 
-Learn more *(link with a down arrow: jumps to the next section)*
+Learn more *(link with a down arrow: jumps to "The problem with most pre-built software systems")*
 
 *Small line under a thin rule, at the bottom of the hero:*
 
@@ -86,7 +86,7 @@ The problem with most pre-built software systems
 
 ## Built for everyone. Fitted to no one.
 
-Off-the-shelf software is built for the average business, and it handles the average work well. But the parts that make you money aren't average. So your team fills the gaps by hand, growth stretches every manual step, and the slowdowns pile up where no one can see them.
+Off-the-shelf software is built for the average business. The parts that make you money aren't average, so your team fills the gaps by hand.
 
 *On desktop, an illustration of a puzzle piece forced into a gap sits to the right.*
 
@@ -94,7 +94,7 @@ Off-the-shelf software is built for the average business, and it handles the ave
 
 ## 3. The doors
 
-*Four cards, each written in the voice of a different owner. Visitors are meant to find the one that sounds like them.*
+*Three cards, each written in the voice of a different owner. Visitors are meant to find the one that sounds like them.*
 
 *Each card has:*
 
@@ -152,21 +152,9 @@ You don't need to chase every new technology. You need solutions that actually m
 
 **AI where it fits** *(button, desktop only)*
 
-### Door 4
-
-*Tag:* Custom software · Automation
-
-> "We're fine now. I don't want to hire ten more people just to keep up."
-
-**Label:** It works today. Will it work at twice the size?
-
-Your systems handle today's volume. More orders, more branches and more people will stretch every manual step you've learned to live with. We map where you're headed and build systems that carry the growth, so scaling doesn't mean hiring just to keep up.
-
-**Build for what's next** *(button, desktop only)*
-
 ### After the doors
 
-*Small label, in caps:* Not sure where to start
+*Small label, in caps:* Ready to Scale? Not sure where to start?
 
 **You don't have to know exactly what you need.** Figuring that out is our job.
 
@@ -299,7 +287,7 @@ One free conversation is all it takes to start.
 - LinkedIn
 - Other
 
-*"Pick a time" shows a row of days, then the open times for the chosen day. Times come live from our calendar.*
+*"Pick a time" shows a row of days, then the open times for the chosen day. Times come live from our calendar. Only 9:00 AM, 11:00 AM and 1:00 PM are offered, on the next 5 days that still have one of those times open; weekends and fully booked days are skipped.*
 
 **Book a Discovery Call** *(submit button; reads "Booking your call…" while it sends)*
 
@@ -408,7 +396,7 @@ We help growing Philippine businesses move beyond spreadsheets and workarounds w
 
 ## Phones only
 
-*A button pinned to the bottom of the screen. It appears once the visitor scrolls past the hero, and hides while the booking form is on screen.*
+*A button pinned to the bottom of the screen. It appears once "The problem with most pre-built software systems" reaches the top of the screen (where "Learn more" lands), and hides while the booking form is on screen.*
 
 **Book a Discovery Call**
 
@@ -422,7 +410,7 @@ We help growing Philippine businesses move beyond spreadsheets and workarounds w
 |---|---|---|---|---|
 | Search description | ✓ | ✓ | ✓ | ✓ |
 | Hero positioning line | ✓ | ✓ | ✓ | — |
-| Door tags | Doors 2, 4 | Doors 1, 4 | Door 3 | — |
+| Door tags | Door 2 | Door 1 | Door 3 | — |
 | "What we build" card | ✓ | ✓ | ✓ | ✓ |
 | FAQ: "What exactly do you build?" | ✓ | ✓ | ✓ | ✓ |
 | Footer description | ✓ | ✓ | ✓ | — |
